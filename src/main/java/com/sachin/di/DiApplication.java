@@ -9,7 +9,7 @@ import org.springframework.util.ConcurrencyThrottleSupport;
 
 import java.lang.reflect.Constructor;
 
-@ComponentScan(basePackages = {"com.sachin.di", "com.sachin.pet"})
+
 @SpringBootApplication
 public class DiApplication {
 
