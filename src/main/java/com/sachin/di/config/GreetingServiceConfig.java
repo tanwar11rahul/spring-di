@@ -1,6 +1,10 @@
 package com.sachin.di.config;
 
 import com.sachin.di.services.*;
+import com.sachin.pet.CatService;
+import com.sachin.pet.DogService;
+import com.sachin.pet.PetService;
+import com.sachin.pet.PetServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -41,5 +45,22 @@ public class GreetingServiceConfig {
     @Bean("I18nService")
     I18NSpanishService I18nSpanishService(){
         return new I18NSpanishService();
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile({"cat"})
+    @Bean
+    PetService catService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
     }
 }
