@@ -1,6 +1,8 @@
 package com.sachin.di;
 
 import com.sachin.di.controller.*;
+import com.sachin.di.datasource.FakeDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -48,5 +50,11 @@ public class DiApplication {
 		System.out.println("......Pet.....");
 		PetController petController = ctx.getBean(PetController.class);
 		System.out.println(petController.getPet());
+
+		System.out.println("........Fake Data Url...........");
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println("username: " + fakeDataSource.getUsername());
+		System.out.println("password: " + fakeDataSource.getPassword());
+		System.out.println("dburl: " + fakeDataSource.getDburl());
 	}
 }
