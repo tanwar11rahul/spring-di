@@ -1,5 +1,6 @@
 package com.sachin.di;
 
+import com.sachin.di.config.PropertiesConfig;
 import com.sachin.di.controller.*;
 import com.sachin.di.datasource.FakeDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,11 @@ public class DiApplication {
 		System.out.println("username: " + fakeDataSource.getUsername());
 		System.out.println("password: " + fakeDataSource.getPassword());
 		System.out.println("dburl: " + fakeDataSource.getDburl());
+
+		System.out.println("........Properties config...........");
+		PropertiesConfig propertiesConfig = ctx.getBean(PropertiesConfig.class);
+		System.out.println("username: " + propertiesConfig.getUsername());
+		System.out.println("password: " + propertiesConfig.getPassword());
+		System.out.println("dburl: " + propertiesConfig.getDburl());
 	}
 }
