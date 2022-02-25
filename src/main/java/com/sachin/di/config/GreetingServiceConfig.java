@@ -3,9 +3,11 @@ package com.sachin.di.config;
 import com.sachin.di.datasource.FakeDataSource;
 import com.sachin.di.services.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Service;
 
+@EnableConfigurationProperties(ConstructorPropertiesConfig.class)
 @PropertySource("classpath:dbconfig.properties")
 @Configuration
 public class GreetingServiceConfig {
@@ -20,6 +22,15 @@ public class GreetingServiceConfig {
         source.setDburl(dburl);
 
         return source;
+    }
+
+    @Bean
+    FakeDataSource fakeDataSourceConstructorConfig(ConstructorPropertiesConfig config){
+        FakeDataSource fakeDataSource2 = new FakeDataSource();
+        fakeDataSource2.setUsername(config.getUsername());
+        fakeDataSource2.setPassword(config.getPassword());
+        fakeDataSource2.setDburl(config.getDburl());
+        return fakeDataSource2;
     }
 
     @Bean

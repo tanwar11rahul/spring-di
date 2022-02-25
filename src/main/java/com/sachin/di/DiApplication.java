@@ -1,5 +1,6 @@
 package com.sachin.di;
 
+import com.sachin.di.config.ConstructorPropertiesConfig;
 import com.sachin.di.config.PropertiesConfig;
 import com.sachin.di.controller.*;
 import com.sachin.di.datasource.FakeDataSource;
@@ -53,7 +54,7 @@ public class DiApplication {
 		System.out.println(petController.getPet());
 
 		System.out.println("........Fake Data Url...........");
-		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean("fakeDataSource");
 		System.out.println("username: " + fakeDataSource.getUsername());
 		System.out.println("password: " + fakeDataSource.getPassword());
 		System.out.println("dburl: " + fakeDataSource.getDburl());
@@ -63,5 +64,11 @@ public class DiApplication {
 		System.out.println("username: " + propertiesConfig.getUsername());
 		System.out.println("password: " + propertiesConfig.getPassword());
 		System.out.println("dburl: " + propertiesConfig.getDburl());
+
+		System.out.println("........Constructor Properties config...........");
+		FakeDataSource store = (FakeDataSource) ctx.getBean("fakeDataSourceConstructorConfig");
+		System.out.println("username: " + store.getUsername());
+		System.out.println("password: " + store.getPassword());
+		System.out.println("dburl: " + store.getDburl());
 	}
 }
